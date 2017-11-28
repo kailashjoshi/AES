@@ -1,12 +1,13 @@
 import base64
 import hashlib
 from Crypto import Random
+from Crypto.Hash import SHA256
 from Crypto.Cipher import AES
 SECRET = '8!fjVb#GP6V&DX;D'
 
 class AESCBCCipher:
     def __init__(self, key):
-        self.key = hashlib.sha256(key.encode()).digest()
+        self.key = SHA256.new(key.encode()).digest()
 
     def encrypt(self, message):
         message = self.__pad(message)
